@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List and Event Planner</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .todo-list {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 20px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .event-planner {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .item .text {
+      flex-grow: 1;
+      margin-right: 10px;
+    }
+
+    .item .date {
+      color: #777;
+      font-size: 12px;
+    }
+    .input-box {
+      margin-bottom: 10px;
+    }
+
+    .item .delete-btn {
+      background-color: black;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      padding: 3px 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Lizyanne's To-Do List and Event Planner</h1>
+    <div class="todo-list">
+      <h2>To-Do List</h2>
+      <div id="todo-items"></div>
+      <div>
+        <input type="text" id="todo-input" placeholder="Enter a task">
+        <input type="date" id="todo-date">
+        <input type="submit" value="Add" onclick="addTodo()">
+      </div>
+    </div>
+    <div class="event-planner">
+      <h2>Event Planner</h2>
+      <div id="event-items"></div>
+      <div>
+        <input type="text" id="event-input" placeholder="Enter an event">
+        <input type="date" id="event-date">
+        <input type="submit" value="Add" onclick="addEvent()">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var todoItems = [];
+
+    function addTodo() {
+      var todoInput = document.getElementById('todo-input');
+      var todoDate = document.getElementById('todo-date');
+      var todoText = todoInput.value.trim();
+      var todoDateValue = todoDate.value;
+
+      if (todoText !== '') {
+        var todoItem = {
+          text: todoText,
+          date: todoDateValue
+        };
+
+        todoItems.push(todoItem);
+        renderTodoItems();
+
+        todoInput.value = '';
+        todoDate.value = '';
+        todoInput.focus();
+      }
+    }
+
+    function deleteTodoItem(index) {
+      todoItems.splice(index, 1);
+      renderTodoItems();
+    }
+
+    function renderTodoItems() {
+      var todoItemsContainer = document.getElementById('todo-items');
+      todoItemsContainer.innerHTML = '';
+
+      for (var i = 0; i < todoItems.length; i++) {
+        var todoItem = todoItems[i];
+
+        var newTodoItem = document.createElement('div');
+        newTodoItem.className = 'item';
+        newTodoItem.innerHTML = '<div class="text">' + todoItem.text + '</div>' +
+                                '<div class="date">' + todoItem.date + '</div>' +
+                                '<button class="delete-btn" onclick="deleteTodoItem(' + i + ')">Delete</button>';
+
+        todoItemsContainer.appendChild(newTodoItem);
+      }
+    }
+    var eventItems = [];
+
+    function addEvent() {
+      var eventInput = document.getElementById('event-input');
+      var eventDate = document.getElementById('event-date');
+      var eventText = eventInput.value.trim();
+      var eventDateValue = eventDate.value;
+
+      if (eventText !== '') {
+        var eventItem = {
+          text: eventText,
+          date: eventDateValue
+        };
+
+        eventItems.push(eventItem);
+        renderEventItems();
+
+        eventInput.value = '';
+        eventDate.value = '';
+        eventInput.focus();
+      }
+      
+    }
+
+    function deleteEventItem(index) {
+      eventItems.splice(index, 1);
+      renderEventItems();
+    }
+
+    function renderEventItems() {
+      var eventItemsContainer = document.getElementById('event-items');
+      eventItemsContainer.innerHTML = '';
+
+      for (var i = 0; i < eventItems.length; i++) {
+        var eventItem = eventItems[i];
+
+        var newEventItem = document.createElement('div');
+        newEventItem.className = 'item';
+        newEventItem.innerHTML = '<div class="text">' + eventItem.text + '</div>' +
+                                 '<div class="date">' + eventItem.date + '</div>' +
+                                 '<button class="delete-btn" onclick="deleteEventItem(' + i + ')">Delete</button>';
+
+        eventItemsContainer.appendChild(newEventItem);
+      }
+    }
+  </script>
+</body>
+</html>
+
+
