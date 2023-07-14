@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To-Do List and Event Planner</title>
   <style>
     body {
@@ -11,17 +13,23 @@
     }
 
     .container {
-      max-width: 800px;
+      max-width: 100%;
       margin: 0 auto;
-      padding: 20px;
+      padding: 40px;
+      text-align: center;
     }
 
     h1 {
+      font-size: 36px;
+      font-weight: bold;
       text-align: center;
       margin-bottom: 30px;
     }
+    
 
     .todo-list {
+      font-size: 20px;
+      font-weight: bold;
       background-color: #fff;
       border-radius: 5px;
       padding: 10px;
@@ -31,35 +39,43 @@
     }
 
     .event-planner {
+      font-size: 20px;
       background-color: #fff;
       border-radius: 5px;
       padding: 10px;
+      margin-bottom: 20px;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .item {
       display: flex;
       align-items: center;
-      margin-bottom: 5px;
+      font-size: 24px;
+      margin-bottom: 10px;
+      font-weight: bold;
     }
 
     .item .text {
+      font-size: 18px;
       flex-grow: 1;
       margin-right: 10px;
+
+      
     }
 
     .item .date {
       color: #777;
-      font-size: 12px;
+      font-size: 18px;
     }
     .input-box {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
 
     .item .delete-btn {
       background-color: black;
       color: #fff;
-      border: none;
-      border-radius: 3px;
+      border-radius: 5px;
       padding: 3px 8px;
       cursor: pointer;
     }
@@ -181,5 +197,3 @@
   </script>
 </body>
 </html>
-
-
